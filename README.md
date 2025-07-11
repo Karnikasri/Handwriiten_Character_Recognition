@@ -1,4 +1,4 @@
-Handwritten Character Recognition (A–Z) using CNN
+## Handwritten Character Recognition (A–Z) using CNN
 
 This project uses Convolutional Neural Networks (CNN) to recognize handwritten English alphabets (A–Z) from grayscale images. It processes a large dataset of handwritten characters and provides a simple GUI for real-time letter prediction.
 
