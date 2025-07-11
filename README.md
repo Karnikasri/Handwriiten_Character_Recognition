@@ -1,45 +1,65 @@
-# ✍️ Handwritten Character Recognition with Python
-Handwritten Character Recognition allows computers to read human handwriting and convert it into a machine-readable format.
-This project focuses on recognizing English alphabets (A-Z) from handwritten images using Convolutional Neural Networks (CNNs), a powerful technique in Deep Learning.
+Handwritten Character Recognition (A–Z) using CNN
 
-## Project Overview
-This project leverages a CNN trained on a dataset of handwritten English letters (A-Z) to classify each character image. 
-It includes preprocessing, model training, evaluation, and a simple GUI to make predictions from hand-drawn characters.
+This project uses Convolutional Neural Networks (CNN) to recognize handwritten English alphabets (A–Z) from grayscale images. It processes a large dataset of handwritten characters and provides a simple GUI for real-time letter prediction.
+
+##  Project Overview
+
+- Recognizes handwritten characters (A–Z) using deep learning.
+- Uses CNN model built with Keras and TensorFlow.
+- Includes data preprocessing, model training, evaluation, and a GUI.
+- Dataset: [A_Z Handwritten Data.csv](https://www.kaggle.com/datasets/sachinpatel21/az-handwritten-alphabets-in-csv-format)
 
 ## Technologies Used
-- Python 3.x
-- TensorFlow / Keras
-- NumPy, Pandas, Matplotlib
-- Scikit-learn
-- Tkinter (for GUI)
+- Python 3.x  
+- TensorFlow / Keras  
+- NumPy, Pandas, Matplotlib  
+- Scikit-learn  
+- Tkinter (GUI)
 
-## Dataset
-We use the `A_Z Handwritten Data.csv` dataset, which contains:
-- 26 classes (A-Z)
-- 372,450 total samples
-- Each sample is a 28x28 grayscale image flattened into a row with a label
+##  Dataset Details
+- 26 classes (A to Z)
+- 372,450 labeled grayscale images
+- Each image: 28x28 pixels, flattened into 784 columns
+
+##  How It Works
+
+### 1. Load and Preprocess Data
+- Normalize image pixel values to range [0, 1]
+- Reshape to (28, 28, 1) for CNN input
+- One-hot encode labels
+- Handle class imbalance using `class_weight`
+
+### 2. Model Architecture
+- CNN with Conv2D, MaxPooling, Dropout
+- Flatten + Dense layers for final classification
+- Output layer with softmax (26 classes)
+
+### 3. Training
+- Optimizer: Adam
+- Loss: Categorical Crossentropy
+- Callbacks: EarlyStopping, ReduceLROnPlateau
+
+### 4. Evaluation
+- Accuracy and loss plots
+- Predict and visualize results for test samples
 
 
-## Steps to Implement the Project
- 1. Import Libraries & Load Dataset
-Import required Python libraries like Keras, NumPy, Pandas, etc., and load the handwritten character dataset.
+##  GUI (Optional)
 
- 2. Preprocess the Data
-- Reshape the image data to 28x28 format.
-- Normalize the pixel values to [0, 1].
-- One-hot encode the labels.
-- Split the dataset into training and testing sets.
-- Handle class imbalance with `class_weight`.
+A basic Tkinter GUI allows users to draw a letter on the screen and get the model's prediction in real time.
 
-3. Create & Train the CNN Model
-Build a Convolutional Neural Network using Keras. Include dropout layers to prevent overfitting. Train the model on the preprocessed dataset.
 
-5. Evaluate the Model
-Plot training vs validation accuracy and loss. Display predictions on sample test images.
+##  Model Performance (1 Epoch Sample)
 
-6. Save the Model
-Save the trained model in `.keras` format for deployment or further use.
+- Training Accuracy: ~26%
+- Validation Accuracy: ~6%
+> ⚠️ Note: The current model suffers from `NaN` loss due to architecture or learning rate issues. Further tuning is required.
 
-7. (Optional) GUI for Prediction
-You can build a simple GUI using `Tkinter` to draw characters and use the trained model to predict the letter.
+
+## Improvements (To-Do)
+
+- Fix NaN loss issue by adjusting architecture or learning rate
+- Increase training epochs
+- Add BatchNormalization and better regularization
+- Improve GUI for smoother drawing
 
